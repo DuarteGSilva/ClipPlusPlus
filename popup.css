@@ -1,0 +1,202 @@
+:root {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    --text-color: hsl(0, 0%, 0%);
+    --accent-2: hsl(180, 90%, 40%);
+    --accent-1: hsl(180, 100%, 30%);
+
+    --accent-3: hsla(180, 90%, 40%, 0.27);
+    --background-main: hsl(0, 0%, 98%);
+    --background-sec: hsl(0, 0%, 87%);
+}
+
+#svgg #path1 {
+    fill: var(--accent-2);
+}
+
+#svgg #path2 {
+    fill: var(--accent-1);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background-main);
+    margin: 0rem;
+    width: 15rem;
+    border: 3px solid var(--background-sec)
+}
+
+.scaffold {
+    margin: 1rem;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+}
+
+top-nav {
+    grid-area: header;
+    background-color: var(--background-sec);
+    border-bottom: 3px solid var(--accent-1);
+    display: grid;
+    grid-template-areas:
+        "logo title button";
+    border-radius: .6rem;
+}
+
+.logo {
+    grid-area: logo;
+    height: 5rem;
+    margin: 0.6rem;
+}
+
+.title {
+    grid-area: title;
+    margin-top: 3rem;
+}
+
+main {
+    grid-area: main;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.button-div {
+    display: grid;
+    grid-template-areas:
+        "one two";
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--background-main);
+    border-color: var(--accent-1);
+    border-radius: 1000px;
+    border-style: solid;
+    text-align: center;
+    height: 2rem;
+    color: var(--text-color);
+}
+
+.left-button {
+    border-top-left-radius: 1000px;
+    border-bottom-left-radius: 1000px;
+}
+
+.right-button {
+    border-top-right-radius: 1000px;
+    border-bottom-right-radius: 1000px;
+}
+
+.in-div-button {
+    justify-content: center;
+    color: var(--text-color);
+    background-color: var(--background-main);
+    border: none;
+    text-align: center;
+    height: 2rem;
+    color: var(--text-color);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.in-div-button:focus,
+.in-div-button:active {
+    background-color: var(--accent-3);
+    transition: none;
+}
+
+.in-div-button:hover {
+    background-color: var(--accent-3);
+}
+
+.title {
+    grid-area: title;
+    text-align: center;
+    color: var(--text-color);
+}
+
+footer {
+    grid-area: footer;
+    height: 2rem;
+    background-color: var(--background-sec);
+    border-bottom: 3px solid var(--accent-1);
+    border-radius: .6rem;
+    display: flex;
+    align-items: center;
+}
+
+.signature {
+    margin: 0.5rem;
+    color: var(--accent-1);
+}
+
+.github {
+    display: contents;
+}
+
+.github > svg {
+    height: 1.8rem;
+    margin-left: auto;
+    margin-right: .3rem;
+}
+
+.github path {
+    fill: var(--text-color);
+}
+
+.options_div {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--accent-3);
+    border-radius: 1000px;
+    border-style: solid;
+    text-align: center;
+    height: 2rem;
+    color: var(--accent-1);
+}
+
+.options_div div {
+    height: 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "one two";
+}
+
+.options_div:hover div {
+    border-radius: 1000px;
+    background-color: var(--accent-3);
+}
+
+.options {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+    font-size: 1rem;
+    width: 4rem;
+    padding-block: 0;
+    padding-inline: 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 1000px;
+}
+
+.options svg {
+    width: 2rem;
+    /* fill: var(--accent-1); */
+    fill: var(--text-color);
+}
+
+.options_div label {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    /* color: var(--accent-1); */
+    color: var(--text-color);
+}
