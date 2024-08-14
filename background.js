@@ -1,7 +1,7 @@
 // background.js
 
 // general stuff
-let on = true;  // executar ou não clipppcode.js (css vai sempre)
+let on = true;  // executar ou não clippp.js (css vai sempre)
 let dark = true;  // dark mode on/off
 let custom = false;  // custom colors on/off
 let colors = {  // custom colors
@@ -30,6 +30,8 @@ let tutorialStatus = 0;
 // 4 -> 5 : /utente/eu/aluno/ano_lectivo/unidades
 
 // add variables to extension storage
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.local.set({ on, dark, custom, colors, savedLinks, tutorialStatus });   // [!] LEMBRAR Q TEM Q SE METER/TIRAR AQUI AS VARIAVEIS QUANDO SE ADICIONA/TIRA [!]
+chrome.runtime.onInstalled.addListener((details) => {
+    if (details.reason == "install") {  // this callback can run for other reasons (update, chrome_update, ...) and this prevents those from deleting the saved values
+        chrome.storage.local.set({ on, dark, custom, colors, savedLinks, tutorialStatus });   // [!] LEMBRAR Q TEM Q SE METER/TIRAR AQUI AS VARIAVEIS QUANDO SE ADICIONA/TIRA [!]
+    }
 });

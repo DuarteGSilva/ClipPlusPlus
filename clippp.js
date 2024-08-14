@@ -619,10 +619,17 @@ function addToSidebarCollFromDict(mainDict, sidebar) {
     return sidebar;
 }
 
-function getTopLinksDivHorarioPage(links) {
-    let final = "<div><span>Escolhido</span>";
-    for (const link of links) {
-        final += `<a href="${link.href}">${link.textContent}</a>`
+function getTopLinksDivHorarioPage(table) {
+    let final = "<div>";
+    const tds = table.querySelectorAll("td")
+    for (const td of tds) {
+        const b = td.querySelector("b")
+        const a = td.querySelector("a")
+        if (b) {
+            final += `<span>${b.textContent}</span>`
+        } else if (a) {
+            final += `<a href="${a.href}">${a.textContent}</a>`
+        }
     }
     final += "</div>";
     return final;
@@ -1382,15 +1389,20 @@ function main() {
                 
 
                 const calendario = document.querySelector("body > table:nth-child(5) > tbody > tr > td:nth-child(3) > table:nth-child(2) > tbody > tr > td:nth-child(3) > div > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(2) > table:nth-child(1)")
-                // maybe calendario.parentElement.innerhtml pq tem legenda?
+                // maybe calendario.parentElement.innerhtml pq tem legenda?  | nah, melhor deixar assim
                 
                 const cadeira = document.querySelector("body > table:nth-child(5) > tbody > tr > td:nth-child(3) > table:nth-child(2) > tbody > tr > td:nth-child(3) > div > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr > td:nth-child(1) > div")
                 
-                let avisos = document.querySelector("body > table:nth-child(5) > tbody > tr > td:nth-child(3) > table:nth-child(2) > tbody > tr > td:nth-child(3) > div > table:nth-child(2) > tbody > tr:nth-child(4) > td > div")
-                if (avisos == null) {
+                let avisos = "";
+                const aviso1 = document.querySelector("body > table:nth-child(5) > tbody > tr > td:nth-child(3) > table:nth-child(2) > tbody > tr > td:nth-child(3) > div > table:nth-child(2) > tbody > tr:nth-child(4) > td > div")
+                if (aviso1 == null) {
                     avisos = '<br><span style="margin: 1rem;">Ainda não existem avisos para esta disciplina.</span><br><br>'
                 } else {
-                    avisos = avisos.innerHTML
+                    const avisos_tbody = document.querySelector("body > table:nth-child(5) > tbody > tr > td:nth-child(3) > table:nth-child(2) > tbody > tr > td:nth-child(3) > div > table:nth-child(2) > tbody")
+                    const arr_avisos_tbody = [...avisos_tbody.children];
+                    for (const aviso of arr_avisos_tbody.slice(3)) {
+                        avisos += aviso.children[0].children[0].innerHTML + "<br>"
+                    }
                 }
                 const form_action = main_text.lastChild.querySelector("td > table > tbody > tr > td > form").action
                 let notifButton;
@@ -1690,8 +1702,8 @@ function main() {
                 //     console.log(`Página '${_url.pathname}' (com este url.Search) do clip não alterada por esta versão do Clip++ :/`);
                 } else {
                     //#region get old DOM data
-                    const linksUp = document.querySelector('table[border="0"][cellspacing="3"][cellpadding="3"]').querySelectorAll("a");
-                    const linksDiv = getTopLinksDivHorarioPage(linksUp);
+                    const linksTable = document.querySelector('table[border="0"][cellspacing="3"][cellpadding="3"]');
+                    const linksDiv = getTopLinksDivHorarioPage(linksTable);
 
                     const horario_ = horario.getHorario();
                     const sideNav = makeSidebarFromBarraDeEscolhas();

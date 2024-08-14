@@ -805,7 +805,7 @@ side-nav .mock_collapsible_out:first-child,
     border-radius: 0.6rem;
     margin-block-end: 1rem;
     padding: 0.6rem;
-    padding-left: 0.3rem;
+    padding-left: 0;
     color: var(--text-color);
     box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
@@ -813,7 +813,7 @@ side-nav .mock_collapsible_out:first-child,
     background-color: var(--accent-1);
     padding: 0.3rem;
     border-radius: 0.6rem;
-    margin-right: 1rem;
+    margin-inline: 0.3rem;
 }
 .horario-super > div > a {
     background-color: var(--accent-3);
